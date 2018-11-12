@@ -5,6 +5,8 @@ const mongoose = require("mongoose")
 const app = express()
 const port = 3000
 
+const Item = require('./models/item')
+
 mongoose.connect('mongodb://localhost/l2-express-tutoial', { useNewUrlParser: true }, (err, db) => {
   if (err) console.log(`Error`, err)
   console.log(`Connected to MongoDB`)
