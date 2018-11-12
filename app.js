@@ -18,12 +18,20 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 app.get('/', (req, res) => {
   let name = req.query.name || 'World'
-  res.render('index', {name : name})
+  Item.find((err, items) => {
+    if (err) return console.error(err)
+    res.render('index', {name : name, items: items})
+  })
 })
 
 app.post('/create', (req, res) => {
-  let item = req.body.item
-  res.send(item)
+  let item = Item({
+    item: req.body.item,
+  })
+  item.save((err, todo) => {
+    if (err) return console.error(err)
+    res.redirect('/')
+  })
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

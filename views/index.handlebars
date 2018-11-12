@@ -4,3 +4,9 @@
   <input type="text" placeholder="..." name="item">
   <button type="submit">submit</button>
 </form>
+
+<ul>
+  {{#each items}}
+    <li>{{this.item}}</li>
+  {{/each}}
+</ul>
