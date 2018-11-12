@@ -7,7 +7,8 @@ app.engine('handlebars', handlebars({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
 
 app.get('/', (req, res) => {
-  res.render('index', {name : 'World'})
+  let name = req.query.name || 'World'
+  res.render('index', {name : name})
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
