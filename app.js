@@ -9,7 +9,7 @@ const port = 3000
 const Item = require('./models/item')
 
 // Connect mongodb
-mongoose.connect('mongodb://root:ds129821@ds129821.mlab.com:29821/hello-express', { useNewUrlParser: true }, (err, db) => {
+mongoose.connect('<MongoDB URI>', { useNewUrlParser: true }, (err, db) => {
   if (err) console.log(`Error`, err)
   console.log(`Connected to MongoDB`)
 })
