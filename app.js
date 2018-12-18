@@ -9,7 +9,7 @@ const port = 3000
 const Item = require('./models/item')
 
 // Connect mongodb
-mongoose.connect('mongodb://localhost/l2-express-tutoial', { useNewUrlParser: true }, (err, db) => {
+mongoose.connect('mongodb://root:ds129821@ds129821.mlab.com:29821/hello-express', { useNewUrlParser: true }, (err, db) => {
   if (err) console.log(`Error`, err)
   console.log(`Connected to MongoDB`)
 })
@@ -19,17 +19,16 @@ app.engine('handlebars', handlebars({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
 app.use(bodyParser.urlencoded({extended: true}))
 
-// Define the endpoint '/' to show all items
+// Define the root '/' to show hello world
 app.get('/', (req, res) => {
-  let name = 'World'
+  res.render('index')
+})
 
-  if (req.query.name) {
-    name = req.query.name
-  }
-
+// Define the endpoint '/items' to show all items
+app.get('/items', (req, res) => {
   Item.find((err, items) => {
     if (err) return console.error(err)
-    res.render('index', {name: name, items: items})
+    res.render('items', {items: items})
   })
 })
 
@@ -40,7 +39,7 @@ app.post('/create', (req, res) => {
   })
   item.save((err, todo) => {
     if (err) return console.error(err)
-    res.redirect('/')
+    res.redirect('/items')
   })
 })
 

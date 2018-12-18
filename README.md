@@ -6,7 +6,7 @@
 
 * node
 * npm or yarn
-* mongo database
+* mongo database (mlab)
 
 ### Installation
 
